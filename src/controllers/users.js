@@ -153,7 +153,7 @@ function ageIsValid(age) {
 }
 
 function dniIsValid(dni) {
-  const regexDNI = /^[A-Z][A-Z][A-Z][0-9][0-9][a-z][0-9]/;
+  const regexDNI = /^[A-Z][A-Z][A-Z][0-9][0-9][a-z][0-9]$/;
   const isAValidDNI = regexDNI.test(dni)
   return isAValidDNI
 }
