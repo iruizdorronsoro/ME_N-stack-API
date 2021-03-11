@@ -55,9 +55,9 @@ const all = async (req, res) => {
 }
 
 const get = async (req, res) => {
-  const id = req.params.id;
+  const dni = req.params.dni;
   try {
-    const user = await User.findById(id);
+    const user = await User.findOne({"dni": dni});
     const response = {
       status: 'success',
       data: {
@@ -70,7 +70,7 @@ const get = async (req, res) => {
     const response = {
       status: 'error',
       error: {
-        message: 'ID not found'
+        message: 'DNI not found'
       }
     };
     res.json(response);
@@ -78,9 +78,9 @@ const get = async (req, res) => {
 }
 
 const update = async (req, res) => {
-  const id = req.params.id;
+  const dni = req.params.dni;
   const data = req.body;
-  const user = await User.findById(id);
+  const user = await User.findOne({"dni": dni});
   if (ageIsValid(data.age) && dniIsValid(data.dni)) {
 
     user.name = data.name;
@@ -124,9 +124,10 @@ const update = async (req, res) => {
 }
 
 const remove = async (req, res) => {
-  const id = req.params.id;
+  const dni = req.params.dni;
   try {
-    await User.remove({_id: id});
+    const user = await User.findOne({"dni": dni});
+    await User.remove({_id: user._id});
 
     const response = {
       status: 'success',
@@ -139,7 +140,7 @@ const remove = async (req, res) => {
     const response = {
       status: 'error',
       error: {
-        message: 'ID not found'
+        message: 'DNI not found'
       }
     };
     res.json(response);
