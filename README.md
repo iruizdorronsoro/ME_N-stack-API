@@ -1,5 +1,5 @@
-# CRUD API
-Using Node, Express and MongoDB
+# CRUD ME_N API
+Using MongoDB, Express & Node
 
 ## Description
 
